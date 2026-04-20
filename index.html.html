@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shivya Bidhuri — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pink:    #f9b8cc;
+    --pink-l:  #fde8f0;
+    --pink-d:  #c4607f;
+    --lav:     #c9b8f0;
+    --lav-l:   #ede8fb;
+    --lav-d:   #7a5fbf;
+    --blue:    #b8d8f0;
+    --blue-l:  #e4f1fb;
+    --blue-d:  #4a85b8;
+    --white:   #fffbfe;
+    --soft:    #f5f0fa;
+    --text:    #3d2f5a;
+    --muted:   #7a6e8a;
+    --radius:  18px;
+    --shadow:  0 6px 28px rgba(180,140,210,0.13);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,251,254,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,184,240,0.3);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 62px;
+  }
+
+  .nav-logo {
+    font-weight: 700; font-size: 1.15rem;
+    background: linear-gradient(120deg, var(--pink-d), var(--lav-d));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+
+  .nav-links a {
+    text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    color: var(--muted); letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--lav-d); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fde8f0 0%, #ede8fb 40%, #e4f1fb 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 4rem 2rem;
+    position: relative; overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(249,184,204,0.35) 0%, transparent 55%),
+      radial-gradient(circle at 80% 70%, rgba(184,216,240,0.3) 0%, transparent 55%),
+      radial-gradient(circle at 55% 10%, rgba(201,184,240,0.25) 0%, transparent 45%);
+    pointer-events: none;
+  }
+
+  .hero-avatar {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--lav));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; margin-bottom: 1.8rem;
+    box-shadow: 0 8px 30px rgba(180,140,210,0.25);
+    position: relative;
+  }
+
+  .hero-name {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 700; letter-spacing: -0.5px;
+    background: linear-gradient(120deg, var(--pink-d) 0%, var(--lav-d) 60%, var(--blue-d) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 600; color: var(--lav-d);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-sub {
+    font-size: 0.97rem; color: var(--muted);
+    max-width: 480px; margin-bottom: 2.2rem;
+  }
+
+  .btn {
+    display: inline-block; padding: 0.7rem 2rem;
+    border-radius: 50px; font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer; border: none;
+  }
+
+  .btn-primary {
+    background: linear-gradient(120deg, var(--pink), var(--lav));
+    color: var(--text);
+    box-shadow: 0 4px 18px rgba(180,140,210,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(180,140,210,0.45); }
+
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+
+  .scroll-arrow {
+    width: 22px; height: 22px; border-right: 2px solid var(--lav);
+    border-bottom: 2px solid var(--lav); transform: rotate(45deg);
+    animation: bounce 1.4s infinite;
+  }
+
+  @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+
+  .section-inner { max-width: 900px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--lav-d);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 700;
+    color: var(--text); margin-bottom: 2.5rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+
+  .section-title span.icon {
+    font-size: 1.6rem;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--lav-l); }
+
+  .edu-cards { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+  .card {
+    background: #fff; border-radius: var(--radius);
+    padding: 1.6rem; box-shadow: var(--shadow);
+    border: 1.5px solid rgba(201,184,240,0.2);
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(180,140,210,0.2); }
+
+  .card-badge {
+    display: inline-block; padding: 0.25rem 0.9rem;
+    border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+    margin-bottom: 0.9rem; letter-spacing: 0.04em;
+  }
+  .badge-pink { background: var(--pink-l); color: var(--pink-d); }
+  .badge-lav  { background: var(--lav-l);  color: var(--lav-d);  }
+  .badge-blue { background: var(--blue-l); color: var(--blue-d); }
+
+  .card-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem; }
+  .card-sub   { font-size: 0.88rem; color: var(--lav-d); font-weight: 600; margin-bottom: 0.3rem; }
+  .card-meta  { font-size: 0.82rem; color: var(--muted); }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--soft); }
+
+  .skills-grid { display: grid; gap: 1.3rem; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+
+  .skill-card {
+    background: #fff; border-radius: var(--radius);
+    padding: 1.6rem 1.3rem; text-align: center;
+    box-shadow: var(--shadow);
+    border: 1.5px solid rgba(201,184,240,0.2);
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .skill-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(180,140,210,0.2); }
+
+  .skill-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin: 0 auto 0.9rem;
+  }
+  .sk-pink { background: var(--pink-l); }
+  .sk-lav  { background: var(--lav-l);  }
+  .sk-blue { background: var(--blue-l); }
+
+  .skill-name { font-size: 0.97rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+  .skill-desc { font-size: 0.8rem; color: var(--muted); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--pink-l); }
+
+  .exp-box {
+    background: #fff; border-radius: var(--radius);
+    padding: 2.4rem; box-shadow: var(--shadow);
+    border: 1.5px solid rgba(249,184,204,0.3);
+    display: flex; flex-direction: column; gap: 0.8rem;
+  }
+
+  .exp-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--lav-l); color: var(--lav-d);
+    padding: 0.35rem 1rem; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 700; width: fit-content;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--lav-d); animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .exp-heading { font-size: 1.2rem; font-weight: 700; color: var(--text); }
+  .exp-body    { font-size: 0.93rem; color: var(--muted); max-width: 560px; line-height: 1.8; }
+
+  /* ── CONTACT ── */
+  #contact { background: linear-gradient(135deg, var(--lav-l) 0%, var(--blue-l) 100%); text-align: center; }
+
+  .contact-card {
+    background: #fff; border-radius: calc(var(--radius) * 1.3);
+    padding: 3rem 2.5rem; box-shadow: 0 8px 40px rgba(180,140,210,0.18);
+    max-width: 520px; margin: 0 auto;
+    border: 1.5px solid rgba(201,184,240,0.25);
+  }
+
+  .contact-icon-wrap {
+    width: 68px; height: 68px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--pink-l), var(--lav-l));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin: 0 auto 1.2rem;
+  }
+
+  .contact-email {
+    font-size: 1rem; font-weight: 600; color: var(--muted);
+    margin-bottom: 1.8rem;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--lav);
+    color: var(--lav-d); padding: 0.65rem 2rem;
+    border-radius: 50px; font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; transition: all 0.22s; display: inline-block;
+  }
+  .btn-outline:hover {
+    background: linear-gradient(120deg, var(--pink), var(--lav));
+    border-color: transparent; color: var(--text);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(180,140,210,0.35);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--soft); text-align: center;
+    padding: 2rem; font-size: 0.85rem; color: var(--muted);
+    border-top: 1px solid rgba(201,184,240,0.2);
+  }
+
+  footer .heart { color: var(--pink-d); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.8rem; }
+    #hero { padding: 3rem 1.5rem; }
+    section { padding: 3.5rem 1.2rem; }
+    .contact-card { padding: 2rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">✦ Shivya</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-avatar">🌸</div>
+  <h1 class="hero-name">Shivya Bidhuri</h1>
+  <p class="hero-tagline">Aspiring AI Engineer &amp; Creative Tech Enthusiast</p>
+  <p class="hero-sub">Passionate about building intelligent systems and weaving creativity into technology — one line of code at a time.</p>
+  <a href="#contact" class="btn btn-primary">Say Hello ✉</a>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label">Academic Journey</p>
+    <h2 class="section-title"><span class="icon">🎓</span> Education</h2>
+    <div class="edu-cards">
+      <div class="card">
+        <span class="card-badge badge-pink">2012 – 2025</span>
+        <div class="card-title">Sri Sathya Sai Vidya Vihar</div>
+        <div class="card-sub">Senior Secondary Education</div>
+        <div class="card-meta">Completed schooling with a strong foundation in sciences and mathematics.</div>
+      </div>
+      <div class="card">
+        <span class="card-badge badge-lav">2025 – 2029</span>
+        <div class="card-title">B.Tech — Computer Science Engineering</div>
+        <div class="card-sub">AI Specialization · IGDTUW, Delhi</div>
+        <div class="card-meta">Indira Gandhi Delhi Technical University for Women — currently pursuing with a focus on Artificial Intelligence.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">What I Know</p>
+    <h2 class="section-title"><span class="icon">🛠️</span> Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon sk-blue">📊</div>
+        <div class="skill-name">R Studio</div>
+        <div class="skill-desc">Data analysis, visualization, and statistical computing</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon sk-pink">🌐</div>
+        <div class="skill-name">Web Development</div>
+        <div class="skill-desc">Building clean, responsive websites and interfaces</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon sk-lav">🐍</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-desc">Scripting, automation, and AI/ML pipelines</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon sk-blue">⚙️</div>
+        <div class="skill-name">C++</div>
+        <div class="skill-desc">Object-oriented programming and system-level logic</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label">My Journey</p>
+    <h2 class="section-title"><span class="icon">💼</span> Experience</h2>
+    <div class="exp-box">
+      <div class="exp-status">
+        <div class="status-dot"></div>
+        Currently Active
+      </div>
+      <div class="exp-heading">Building & Learning Every Day</div>
+      <p class="exp-body">
+        Currently channeling curiosity into hands-on projects — exploring machine learning, designing web interfaces, and honing programming skills. Every project is a stepping stone toward becoming a confident, creative AI engineer. Open to internships, collaborations, and new opportunities!
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title" style="justify-content:center;"><span class="icon">💌</span> Contact</h2>
+    <div class="contact-card">
+      <div class="contact-icon-wrap">✨</div>
+      <h3 style="font-size:1.35rem;font-weight:700;margin-bottom:0.5rem;">Let's connect!</h3>
+      <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1.2rem;">Whether it's a project idea, collaboration, or just a friendly hello — my inbox is always open.</p>
+      <p class="contact-email">📧 bidhurishivya@gmail.com</p>
+      <a href="mailto:bidhurishivya@gmail.com" class="btn-outline">Send a Message →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Made with <span class="heart">♡</span> by Shivya Bidhuri &nbsp;·&nbsp; 2025</p>
+</footer>
+
+</body>
+</html>
